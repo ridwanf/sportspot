@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-const keys = require('./keys');
+const keys = require('../config/keys');
 
 const config = {
   apiKey: keys.firebaseApiKey,
