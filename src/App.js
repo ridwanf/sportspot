@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import loginWithGoogle from './helpers/auth';
-// import { firebaseAuth } from '../config/constants';
 
 const firebaseAuthKey = 'firebaseAuthInProgress';
 // const appTokenKey = 'appToken';

@@ -1,8 +1,7 @@
-import { googleProvider, firebaseAuth } from '../config/firebaseConfig';
+import { googleProvider, firebaseAuth } from '../../services/firebaseConfig';
 
 export default function loginWithGoogle() {
   return firebaseAuth().signInWithPopup(googleProvider).then((result) => {
-    console.log(result.credential.accessToken);
     console.log(result.user);
   });
 }
