@@ -1,48 +1,65 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import loginWithGoogle from './helpers/auth';
+import { connect } from 'react-redux';
+import { BrowserRouter, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import * as actions from './actions';
+import Navbar from './components/Navbar';
+import Landing from './components/Landing';
+import Listing from './components/Listing';
+import Footer from './components/Footer';
 
-const firebaseAuthKey = 'firebaseAuthInProgress';
-// const appTokenKey = 'appToken';
-require('./assets/style/index.scss');
+import './assets/style/index.scss';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // splashScreen: false,
     };
-
-    this.handleGoogleLogin = this.handleGoogleLogin.bind(this);
+    this.getCurrentAddress = this.getCurrentAddress.bind(this);
   }
-  componentWillMount() {
-
-  }
-
-  handleGoogleLogin() {
-    loginWithGoogle().catch((error) => {
-      console.log(error);
-      localStorage.removeItem(firebaseAuthKey);
-    });
-    localStorage.setItem(firebaseAuthKey, '1');
+  componentDidMount() {
+    this.props.fetchUser();
+    this.getCurrentLocation();
   }
 
+  getCurrentAddress(pos) {
+    const geocoder = new window.google.maps.Geocoder();
+    const { latitude, longitude } = pos.coords;
+    this.props.currentAddress(geocoder, { latitude, longitude });
+  }
+  getCurrentLocation() {
+    navigator.geolocation.getCurrentPosition(this.getCurrentAddress);
+  }
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <button className="button is-info" onClick={() => this.handleGoogleLogin()}>Login</button>
+      <div>
+        <BrowserRouter>
+          <div>
+            <Navbar />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/listing" component={Listing} />
+            <Footer />
+          </div>
+        </BrowserRouter>
       </div>
     );
   }
 }
 
-export default App;
+
+// const mapDispatchToProps = (dispatch, props) => {
+//   return {
+//     dispatch1: () => {
+//       dispatch(actions);
+//     },
+//   };
+// };
+App.propTypes = {
+  fetchUser: PropTypes.func.isRequired,
+  currentAddress: PropTypes.func.isRequired,
+
+};
+
+export default connect(null, actions)(App);

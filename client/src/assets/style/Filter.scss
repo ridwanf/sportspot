@@ -1,0 +1,23 @@
+.search-field{
+  .field-body{
+    @media screen and (min-width: 769px){
+      .field:first-child{
+         width: 20%
+      }
+      .field:nth-child(2){
+        width: 50%
+      }
+      .field:last-child{
+        text-align: center
+      }
+    }
+    .field {
+      .control {
+        .button {
+        width: 100%;
+      }
+    }
+    }
+  }
+
+}

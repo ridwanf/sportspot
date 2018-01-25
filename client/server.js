@@ -18,6 +18,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/authRoutes')(app);
+require('./routes/filterRoutes')(app);
 
 const config = {
   apiKey: keys.firebaseApiKey,
@@ -39,7 +40,7 @@ app.use('/public', express.static(path.resolve(__dirname, './public')));
 
 require('./build/dev-server')(app);
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.write(indexHTML);
   res.end();
 });

@@ -11,6 +11,7 @@ module.exports = function setupDevServer(app) {
     new webpack.NoEmitOnErrorsPlugin(),
   );
   const clientCompiler = webpack(clientConfig);
+  /* eslint-disable global-require */
   app.use(require('webpack-dev-middleware')(clientCompiler, {
     stats: {
       colors: true,
