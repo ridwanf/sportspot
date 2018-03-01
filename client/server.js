@@ -34,6 +34,15 @@ firebase.initializeApp(config);
 // export const ref = firebase.database().ref();
 // export const firebaseAuth = firebase.auth;
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/public'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+  });
+}
+
+
 const indexHTML = (() => fs.readFileSync(path.resolve(__dirname, './index.html'), 'utf-8'))();
 
 app.use('/public', express.static(path.resolve(__dirname, './public')));

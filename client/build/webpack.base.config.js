@@ -2,8 +2,10 @@ const path = require('path');
 
 const config = {
   entry: {
-    app: path.resolve(__dirname, '../src/index.js'),
-    style: path.resolve(__dirname, '../src/assets/style/index.scss'),
+    app: [
+      path.resolve(__dirname, '../src/index.js'),
+      path.resolve(__dirname, '../src/assets/style/index.scss')],
+    // style: path.resolve(__dirname, '../src/assets/style/index.scss'),
   },
   module: {
     rules: [

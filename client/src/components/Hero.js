@@ -6,7 +6,7 @@ class Hero extends Component {
     return (
       <div>
         <section className="hero is-info is-medium is-bold">
-          <div className="hero-body" >
+          <div className="hero-body hero-landing" >
             <div className="container has-text-centered">
               <h1 className="title">
             The new standard in &lt;insert industry here&gt;

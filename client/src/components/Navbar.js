@@ -34,9 +34,9 @@ class Navbar extends Component {
       default:
         return (
           <div className="navbar-item has-dropdown is-hoverable is-info" >
-            <a className="navbar-link " href="/">
+            <span className="navbar-link">
              Hi {this.props.auth.name.givenName} {this.props.auth.name.familyName}
-            </a>
+            </span>
             <div className="navbar-dropdown">
               <a className="navbar-item" href="/api/logout">
                  Log out
@@ -67,7 +67,7 @@ class Navbar extends Component {
                 Home
                 </NavLink>
                 <NavLink className="navbar-item" activeClassName="is-active" to="/listing" >
-                Examples
+                Listing
                 </NavLink>
                 {this.renderContent()}
               </div>
